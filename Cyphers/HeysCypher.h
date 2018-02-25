@@ -17,10 +17,13 @@ private:
 	const static int BlockSize = 16;
 	const static int KeySize = 112;
 	const static int RoundKeySize = 16;
+	const static int RoundNumber = 7;
 
-	void applyRound(Block& block);
+	void applyRound(Block& block, const RoundKey& roundKey);
 	RoundKey getRoundKey(const KeyData& key, unsigned int round);
 	Block getBlock(const Data& data, int roundNumber);
+	int performSubstitution(int value);
+	void performShuffle(Block& block);
 	int getNumberOfBlocks(const Data& data);
 	void appendBlock(Data& data, const Block& block);
 };
