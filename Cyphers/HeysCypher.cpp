@@ -6,14 +6,34 @@ namespace
 {
 	using Block = std::vector<bool>;
 	using Chunks = std::array<int, 4>;
+
 	Chunks getChunks(const Block& block)
 	{
-		return Chunks();
+		Chunks result;
+		for (int chunkIndex = 0; chunkIndex < result.size(); ++chunkIndex)
+		{
+			auto& chunk = result[chunkIndex];
+			chunk = 0;
+			for (int bitIndex = 0; bitIndex < 4; ++bitIndex)
+			{
+				chunk ^= static_cast<int>(block[chunkIndex + bitIndex]);
+				chunk <<= 1;
+			}
+		}
+
+		return result;
 	}
 
 	void convert(const Chunks& from, Block& to)
 	{
-
+		to.clear();
+		for (const auto& chunk : from)
+		{
+			for (int i = 0; i < 4; ++i)
+			{
+				to.emplace_back((chunk >> i) & 0x1);
+			}
+		}
 	}
 }
 
@@ -81,9 +101,17 @@ int HeysCypher::performSubstitution(int value)
 	return SBox[value];
 }
 
-void HeysCypher::performShuffle(Block& block)
+Block HeysCypher::performShuffle(const Block& block)
 {
+	Block result;
+	for (int bitIndex = 0; bitIndex < BlockSize; ++bitIndex)
+	{
+		auto chunkIndex = bitIndex / 4;
+		auto indexInChunk = bitIndex % 4;
+		result[chunkIndex + indexInChunk * 4] = block[bitIndex];
+	}
 
+	return result;
 }
 
 int HeysCypher::getNumberOfBlocks(const Data& data)

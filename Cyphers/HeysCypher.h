@@ -23,7 +23,7 @@ private:
 	RoundKey getRoundKey(const KeyData& key, unsigned int round);
 	Block getBlock(const Data& data, int roundNumber);
 	int performSubstitution(int value);
-	void performShuffle(Block& block);
+	Block performShuffle(const Block& block);
 	int getNumberOfBlocks(const Data& data);
 	void appendBlock(Data& data, const Block& block);
 };
