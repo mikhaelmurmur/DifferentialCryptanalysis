@@ -118,7 +118,7 @@ int HeysCypher::performSubstitution(int value)
 
 Block HeysCypher::performShuffle(const Block& block)
 {
-	Block result;
+	Block result(block.size());
 	for (int bitIndex = 0; bitIndex < BlockSize; ++bitIndex)
 	{
 		auto chunkIndex = bitIndex / 4;
