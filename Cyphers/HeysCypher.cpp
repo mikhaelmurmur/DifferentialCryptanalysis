@@ -61,7 +61,7 @@ Cypher::Data HeysCypher::encrypt(const Data& data, const KeyData& key)
 			applyRound(block, roundKey);
 		}
 
-		applyFinalBluring(block, getRoundKey(key, RoundNumber));
+		applyFinalBlur(block, getRoundKey(key, RoundNumber));
 
 		appendBlock(encryptedData, block);
 	}
@@ -89,7 +89,7 @@ void HeysCypher::applyRound(Block& block, const RoundKey& roundKey)
 	performShuffle(block);
 }
 
-void HeysCypher::applyFinalBluring(Block& block, const RoundKey& roundKey)
+void HeysCypher::applyFinalBlur(Block& block, const RoundKey& roundKey)
 {
 	blockXorKey(block, roundKey);
 }
