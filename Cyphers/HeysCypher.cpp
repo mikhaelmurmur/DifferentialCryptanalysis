@@ -1,11 +1,14 @@
 #include "stdafx.h"
 #include "HeysCypher.h"
 #include <assert.h>
+#include <array>
 
 namespace
 {
 	using Block = std::vector<bool>;
+	using RoundKey = std::vector<bool>;
 	using Chunks = std::array<int, 4>;
+	const int BlockSize = 16;
 
 	Chunks getChunks(const Block& block)
 	{
@@ -35,6 +38,14 @@ namespace
 			}
 		}
 	}
+
+	void blockXorKey(Block& block, const RoundKey& roundKey)
+	{
+		for (int index = 0; index < BlockSize; ++index)
+		{
+			block[index] = block[index] ^ roundKey[index];
+		}
+	}
 }
 
 Cypher::Data HeysCypher::encrypt(const Data& data, const KeyData& key)
@@ -50,6 +61,8 @@ Cypher::Data HeysCypher::encrypt(const Data& data, const KeyData& key)
 			applyRound(block, roundKey);
 		}
 
+		applyFinalBluring(block, getRoundKey(key, RoundNumber));
+
 		appendBlock(encryptedData, block);
 	}
 
@@ -63,10 +76,7 @@ Cypher::Data HeysCypher::decrypt(const Data& data, const KeyData& key)
 
 void HeysCypher::applyRound(Block& block, const RoundKey& roundKey)
 {
-	for (int index = 0; index < BlockSize; ++index)
-	{
-		block[index] = block[index] ^ roundKey[index];
-	}
+	blockXorKey(block, roundKey);
 
 	auto chunks = getChunks(block);
 	for (auto& chunk : chunks)
@@ -77,6 +87,11 @@ void HeysCypher::applyRound(Block& block, const RoundKey& roundKey)
 	convert(chunks, block);
 
 	performShuffle(block);
+}
+
+void HeysCypher::applyFinalBluring(Block& block, const RoundKey& roundKey)
+{
+	blockXorKey(block, roundKey);
 }
 
 HeysCypher::RoundKey HeysCypher::getRoundKey(const KeyData& key, unsigned int roundNumber)

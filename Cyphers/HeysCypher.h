@@ -1,6 +1,6 @@
 #pragma once
 #include "Cypher.h"
-#include <array>
+
 class HeysCypher :
 	public Cypher
 {
@@ -20,6 +20,7 @@ private:
 	const static int RoundNumber = 7;
 
 	void applyRound(Block& block, const RoundKey& roundKey);
+	void applyFinalBluring(Block& block, const RoundKey& roundKey);
 	RoundKey getRoundKey(const KeyData& key, unsigned int round);
 	Block getBlock(const Data& data, int roundNumber);
 	int performSubstitution(int value);
