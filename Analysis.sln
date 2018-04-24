@@ -9,6 +9,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cyphers", "Cyphers\Cyphers.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CypherTests", "CypherTests\CypherTests.vcxproj", "{C57F3873-F0A1-4DB9-9736-D62B3604FE77}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0BE7A8CA-AE1B-4482-A984-9C42A6774089}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestFiller", "TestFiller\TestFiller.vcxproj", "{2BCC5D41-4EA4-431A-B0F6-89873AD650BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,9 +45,21 @@ Global
 		{C57F3873-F0A1-4DB9-9736-D62B3604FE77}.Release|x64.Build.0 = Release|x64
 		{C57F3873-F0A1-4DB9-9736-D62B3604FE77}.Release|x86.ActiveCfg = Release|Win32
 		{C57F3873-F0A1-4DB9-9736-D62B3604FE77}.Release|x86.Build.0 = Release|Win32
+		{2BCC5D41-4EA4-431A-B0F6-89873AD650BC}.Debug|x64.ActiveCfg = Debug|x64
+		{2BCC5D41-4EA4-431A-B0F6-89873AD650BC}.Debug|x64.Build.0 = Debug|x64
+		{2BCC5D41-4EA4-431A-B0F6-89873AD650BC}.Debug|x86.ActiveCfg = Debug|Win32
+		{2BCC5D41-4EA4-431A-B0F6-89873AD650BC}.Debug|x86.Build.0 = Debug|Win32
+		{2BCC5D41-4EA4-431A-B0F6-89873AD650BC}.Release|x64.ActiveCfg = Release|x64
+		{2BCC5D41-4EA4-431A-B0F6-89873AD650BC}.Release|x64.Build.0 = Release|x64
+		{2BCC5D41-4EA4-431A-B0F6-89873AD650BC}.Release|x86.ActiveCfg = Release|Win32
+		{2BCC5D41-4EA4-431A-B0F6-89873AD650BC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C57F3873-F0A1-4DB9-9736-D62B3604FE77} = {0BE7A8CA-AE1B-4482-A984-9C42A6774089}
+		{2BCC5D41-4EA4-431A-B0F6-89873AD650BC} = {0BE7A8CA-AE1B-4482-A984-9C42A6774089}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43F97F4D-D27A-400C-BAB9-5EB32A9DF1B8}
